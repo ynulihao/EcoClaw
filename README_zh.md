@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" height="128" alt="EcoClaw">
+  <img src="assets/logo.png" height="200" alt="EcoClaw">
 </p>
 
 <h2 align="center">
@@ -128,8 +128,7 @@
 
 ```bash
 # 1. 克隆 & 安装依赖
-git clone https://github.com/ynulihao/AgentSkillOS.git && cd EcoClaw
- && cd EcoClaw
+git clone git@github.com:ynulihao/EcoClaw.git && cd EcoClaw
 npm install
 
 # 2. 配置 OpenRouter API Key / 出站代理
@@ -274,7 +273,7 @@ EcoClaw 基于我们团队在 LLM 模型选择方面的长期研究积累。如�
 ```bibtex
 @inproceedings{zhang2025avengers,
   title        = {The Avengers: A Simple Recipe for Uniting Smaller Language Models to Challenge Proprietary Giants},
-  author       = {Zhang, Yiqun and Li, Hao and Wang, Chenxu and Chen, Linyao and Zhang, Qiaosheng and Ye, Peng and Feng, Shi and Wang, Daling and Wang, Zhen and Wang, Xinrun and others},
+  author       = {Zhang, Yiqun and Li, Hao and Wang, Chenxu and Chen, Linyao and Zhang, Qiaosheng and Ye, Peng and Feng, Shi and Wang, Daling and Wang, Zhen and Wang, Xinrun and Xu, Jia and Bai, Lei and Ouyang, Wanli and Hu, Shuyue},
   booktitle    = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},
   year         = {2025},
   note         = {Oral presentation},
@@ -309,7 +308,7 @@ EcoClaw 基于我们团队在 LLM 模型选择方面的长期研究积累。如�
 
 @article{li2026llmrouterbench,
   title        = {LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing},
-  author       = {Li, Hao and Zhang, Yiqun and Guo, Zhaoyan and Wang, Chenxu and Tang, Shengji and Zhang, Qiaosheng and Chen, Yang and Qi, Biqing and Ye, Peng and Bai, Lei and others},
+  author       = {Li, Hao and Zhang, Yiqun and Guo, Zhaoyan and Wang, Chenxu and Tang, Shengji and Zhang, Qiaosheng and Chen, Yang and Qi, Biqing and Ye, Peng and Bai, Lei and Wang, Zhen and Hu, Shuyue},
   journal      = {arXiv preprint arXiv:2601.07206},
   year         = {2026}
 }
