@@ -1,0 +1,61 @@
+{
+  "name": "@ecoclaw/claw",
+  "version": "0.1.0",
+  "description": "Benchmark-driven LLM router — routes to the best model per task using PinchBench data",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "openclaw.plugin.json"
+  ],
+  "scripts": {
+    "build:embeddings": "tsx scripts/build-embeddings.ts",
+    "pull:snapshot": "tsx scripts/pull-snapshot.ts",
+    "prebuild": "npm run build:embeddings",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "llm",
+    "router",
+    "benchmark",
+    "pinchbench",
+    "openclaw",
+    "openrouter",
+    "smart-routing"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.3.5",
+    "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.0",
+    "vitest": "^4.0.18"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2025.1.0"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

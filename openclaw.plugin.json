@@ -1,0 +1,21 @@
+{
+  "id": "eco-claw",
+  "name": "EcoClaw",
+  "description": "Benchmark-driven LLM router — routes to the best model per task using PinchBench data",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "profile": {
+        "type": "string",
+        "enum": ["best", "balanced", "eco"],
+        "default": "balanced",
+        "description": "Routing profile: best (quality priority), balanced (default), eco (cost priority)"
+      },
+      "proxyPort": {
+        "type": "number",
+        "default": 8403,
+        "description": "Local proxy port for OpenRouter forwarding"
+      }
+    }
+  }
+}
