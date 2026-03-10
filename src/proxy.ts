@@ -14,7 +14,7 @@
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import type { AddressInfo } from "node:net";
 import type { BenchmarkData } from "./data/types.js";
-import { route } from "./router/index.js";
+import { normalizePromptForClassification, route } from "./router/index.js";
 import type { RoutingProfileName, SelectionResult } from "./router/types.js";
 import { isRoutingProfile, getProfileFromModel } from "./models.js";
 import { request, isTimeoutError, type OutboundResponse } from "./http-client.js";
@@ -30,12 +30,22 @@ export interface ProxyOptions {
   onReady?: (port: number) => void;
   onError?: (error: Error) => void;
   onRouted?: (decision: SelectionResult & { originalModel: string }) => void;
+  onRequestCompleted?: (event: ProxyRequestCompletedEvent) => void;
 }
 
 export interface ProxyHandle {
   port: number;
   baseUrl: string;
   close: () => Promise<void>;
+}
+
+export interface ProxyRequestCompletedEvent {
+  originalModel: string;
+  selectedModel: string;
+  actualModel: string;
+  usedFallback: boolean;
+  classifiedPrompt: string;
+  routingDecision: SelectionResult | null;
 }
 
 /**
@@ -177,7 +187,14 @@ function extractUserPrompt(body: Record<string, unknown>): string {
  * Start the EcoClaw proxy server.
  */
 export async function startProxy(options: ProxyOptions): Promise<ProxyHandle> {
-  const { benchmarkData, defaultProfile = "balanced", onReady, onError, onRouted } = options;
+  const {
+    benchmarkData,
+    defaultProfile = "balanced",
+    onReady,
+    onError,
+    onRouted,
+    onRequestCompleted,
+  } = options;
 
   const server = createServer(async (req: IncomingMessage, res: ServerResponse) => {
     try {
@@ -235,14 +252,16 @@ export async function startProxy(options: ProxyOptions): Promise<ProxyHandle> {
 
       const originalModel = (body.model as string) || "";
       const isStreaming = body.stream === true;
+      let classifiedPrompt = "";
       let routingDecision: SelectionResult | null = null;
 
       // Route if the model is a virtual routing profile
       if (isRoutingProfile(originalModel)) {
         const profileName = getProfileFromModel(originalModel);
         const userPrompt = extractUserPrompt(body);
+        classifiedPrompt = normalizePromptForClassification(userPrompt);
 
-        routingDecision = await route(userPrompt, benchmarkData, profileName);
+        routingDecision = await route(classifiedPrompt, benchmarkData, profileName);
 
         // Rewrite model field to the selected OpenRouter model ID
         body.model = routingDecision.primary.openrouterId;
@@ -297,8 +316,18 @@ export async function startProxy(options: ProxyOptions): Promise<ProxyHandle> {
         throw err;
       }
 
-      if (usedFallback) {
-        console.log(`[EcoClaw] Used fallback model: ${actualModel}`);
+      const selectedModel = routingDecision
+        ? routingDecision.primary.openrouterId
+        : (body.model as string);
+      if (onRequestCompleted) {
+        onRequestCompleted({
+          originalModel,
+          selectedModel,
+          actualModel,
+          usedFallback,
+          classifiedPrompt,
+          routingDecision,
+        });
       }
 
       // Forward status and headers

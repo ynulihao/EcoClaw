@@ -44,6 +44,15 @@ import { join } from "node:path";
 const benchmarkCache = new BenchmarkCache();
 let activeBenchmarkData: BenchmarkData | null = null;
 let activeProxyHandle: ProxyHandle | null = null;
+const MAX_LOGGED_PROMPT_CHARS = 160;
+
+function formatPromptForLog(prompt: string): string {
+  const normalized = prompt.replace(/\s+/g, " ").trim();
+  if (!normalized) return "";
+  return normalized.length > MAX_LOGGED_PROMPT_CHARS
+    ? `${normalized.slice(0, MAX_LOGGED_PROMPT_CHARS)}...`
+    : normalized;
+}
 
 /**
  * Detect if we're running in gateway mode.
@@ -215,9 +224,19 @@ async function initializeAsync(api: OpenClawPluginApi): Promise<void> {
     onError: (error) => {
       api.logger.error(`Proxy error: ${error.message}`);
     },
-    onRouted: (decision) => {
+    onRequestCompleted: (event) => {
+      if (event.routingDecision) {
+        api.logger.info(
+          `[${event.routingDecision.profile}] ${event.routingDecision.category} ` +
+          `original=${event.originalModel} selected=${event.selectedModel} actual=${event.actualModel}` +
+          `${event.usedFallback ? " fallback=true" : ""}`,
+        );
+        api.logger.info(`classified_prompt=${formatPromptForLog(event.classifiedPrompt)}`);
+        return;
+      }
+
       api.logger.info(
-        `[${decision.profile}] ${decision.category} -> ${decision.primary.model} (score: ${decision.primary.taskScore.toFixed(1)})`,
+        `[direct] original=${event.originalModel} actual=${event.actualModel}`,
       );
     },
   });
@@ -375,7 +394,7 @@ export default plugin;
 
 // Re-export for programmatic use
 export { startProxy, getProxyPort } from "./proxy.js";
-export type { ProxyOptions, ProxyHandle } from "./proxy.js";
+export type { ProxyOptions, ProxyHandle, ProxyRequestCompletedEvent } from "./proxy.js";
 export { ecoClawProvider } from "./provider.js";
 export { OPENCLAW_MODELS, isRoutingProfile, getProfileFromModel, toOpenRouterId } from "./models.js";
 export { route, classifyPrompt, selectModel, ROUTING_PROFILES } from "./router/index.js";
