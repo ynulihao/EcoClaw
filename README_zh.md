@@ -54,6 +54,7 @@
 [![Avengers](https://img.shields.io/badge/Avengers-⭐-blue?style=flat-square&logo=github)](https://github.com/ZhangYiqun018/Avengers)
 [![AvengersPro](https://img.shields.io/badge/AvengersPro-⭐-blue?style=flat-square&logo=github)](https://github.com/ZhangYiqun018/AvengersPro)
 [![LLMRouterBench](https://img.shields.io/badge/LLMRouterBench-⭐-blue?style=flat-square&logo=github)](https://github.com/ynulihao/LLMRouterBench)
+[![openJiSi](https://img.shields.io/badge/openJiSi-⭐-blue?style=flat-square&logo=github)](https://github.com/magent4aci/openJiSi)
 
 
 <!-- End of auto-generated stats -->
@@ -292,6 +293,13 @@ EcoClaw 基于我们团队在 LLM 模型选择方面的长期研究积累。如�
   author       = {Li, Hao and Zhang, Yiqun and Guo, Zhaoyan and Wang, Chenxu and Tang, Shengji and Zhang, Qiaosheng and Chen, Yang and Qi, Biqing and Ye, Peng and Bai, Lei and Wang, Zhen and Hu, Shuyue},
   journal      = {arXiv preprint arXiv:2601.07206},
   year         = {2026}
+}
+
+@article{tang2025open,
+  title={Open-Source LLMs Collaboration Beats Closed-Source LLMs: A Scalable Multi-Agent System},
+  author={Tang, Shengji and Cao, Jianjian and Lin, Weihao and Hong, Jiale and Zhang, Bo and Hu, Shuyue and Bai, Lei and Chen, Tao and Ouyang, Wanli and Ye, Peng},
+  journal={arXiv preprint arXiv:2507.14200},
+  year={2025}
 }
 
 @article{tang2026beyond,
