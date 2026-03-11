@@ -40,6 +40,8 @@
 
 ### 📊 能省多少钱？
 
+
+
 | 策略 | 平均质量 | 平均成本 | vs. 始终用最贵模型 |
 |---|---:|---:|---|
 | 始终用 `claude-opus-4.6` | 89.4% | $2.98 | 基线 |
@@ -47,33 +49,12 @@
 | **EcoClaw balanced** | 93.6% | $0.12 | +4.2pp 质量，**便宜 96%** |
 | **EcoClaw eco** | 90.8% | $0.07 | +1.4pp 质量，**便宜 98%** |
 
-<details>
-<summary><b>各策略模型选择详情：</b></summary>
+本项目基于我们前期技术积累：
 
-| 类别 | best | balanced | eco |
-|---|---|---|---|
-| sanity | `gemini-2.5-flash-lite` | `gemini-2.5-flash-lite` | `gemini-2.5-flash-lite` |
-| calendar | `gpt-5-nano` | `gpt-5-nano` | `gpt-5-nano` |
-| stock | `gpt-5-nano` | `gpt-5-nano` | `gpt-5-nano` |
-| blog | `glm-4.5-air` | `glm-4.5-air` | `gpt-5-nano` |
-| tool_use | `gpt-5-nano` | `gpt-5-nano` | `gpt-5-nano` |
-| summary | `gpt-5-nano` | `gpt-5-nano` | `gpt-5-nano` |
-| events | `glm-5` | `gpt-5-nano` | `gpt-5-nano` |
-| email | `qwen-2.5-7b-instruct` | `qwen-2.5-7b-instruct` | `qwen-2.5-7b-instruct` |
-| memory | `gpt-5-nano` | `gpt-5-nano` | `gpt-5-nano` |
-| files | `gemini-2.5-flash-lite` | `gemini-2.5-flash-lite` | `gemini-2.5-flash-lite` |
-| workflow | `glm-4.5-air` | `glm-4.5-air` | `gpt-5-nano` |
-| clawdhub | `gpt-5-nano` | `gpt-5-nano` | `gpt-5-nano` |
-| skill_search | `gpt-5-nano` | `gpt-5-nano` | `gpt-5-nano` |
-| image_gen | `gemini-3.1-pro-preview` | `kimi-k2.5` | `deepseek-chat` |
-| humanizer | `minimax-m2.5` | `minimax-m2.5` | `minimax-m2.5` |
-| daily_summary | `claude-haiku-4.5` | `step-3.5-flash` | `gpt-5-nano` |
-| email_triage | `gemini-3-flash-preview` | `gemini-3-flash-preview` | `glm-4.5-air` |
-| email_search | `gemini-2.5-flash-lite` | `gemini-2.5-flash-lite` | `gemini-2.5-flash-lite` |
-| eli5_pdf | `kimi-k2.5` | `kimi-k2.5` | `minimax-m2.1` |
-| comprehension | `glm-4.5-air` | `glm-4.5-air` | `glm-4.5-air` |
+[![Avengers](https://img.shields.io/badge/Avengers-⭐-blue?style=flat-square&logo=github)](https://github.com/ZhangYiqun018/Avengers)
+[![AvengersPro](https://img.shields.io/badge/AvengersPro-⭐-blue?style=flat-square&logo=github)](https://github.com/ZhangYiqun018/AvengersPro)
+[![LLMRouterBench](https://img.shields.io/badge/LLMRouterBench-⭐-blue?style=flat-square&logo=github)](https://github.com/ynulihao/LLMRouterBench)
 
-</details>
 
 <!-- End of auto-generated stats -->
 

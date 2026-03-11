@@ -40,6 +40,8 @@
 
 ### 📊 How Much Can You Save?
 
+
+
 | Strategy | Avg Quality | Avg Cost | vs. Using Top Model for Everything |
 |---|---:|---:|---|
 | Always `claude-opus-4.6` | 89.4% | $2.98 | baseline |
@@ -47,6 +49,12 @@
 | **EcoClaw balanced** | 93.6% | $0.12 | +4.2pp quality, **96% cheaper** |
 | **EcoClaw eco** | 90.8% | $0.07 | +1.4pp quality, **98% cheaper** |
 
+
+This project is built on our prior technical work:
+
+[![Avengers](https://img.shields.io/badge/Avengers-⭐-blue?style=flat-square&logo=github)](https://github.com/ZhangYiqun018/Avengers)
+[![AvengersPro](https://img.shields.io/badge/AvengersPro-⭐-blue?style=flat-square&logo=github)](https://github.com/ZhangYiqun018/AvengersPro)
+[![LLMRouterBench](https://img.shields.io/badge/LLMRouterBench-⭐-blue?style=flat-square&logo=github)](https://github.com/ynulihao/LLMRouterBench)
 
 <!-- End of auto-generated stats -->
 
